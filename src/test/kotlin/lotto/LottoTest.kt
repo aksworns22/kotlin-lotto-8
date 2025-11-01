@@ -1,7 +1,10 @@
 package lotto
 
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class LottoTest {
     @Test
@@ -11,7 +14,6 @@ class LottoTest {
         }
     }
 
-    // TODO: 테스트가 통과하도록 프로덕션 코드 구현
     @Test
     fun `로또 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -19,5 +21,13 @@ class LottoTest {
         }
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @ValueSource(ints = [0, -1, 46])
+    fun `로또 번호의 숫자 범위가 유효한 범위인지 확인한다`(illegalNumber: Int) {
+        val validNumbers = arrayOf(1, 2, 3, 4, 5)
+        val numbersWithInvalid = listOf(illegalNumber, *validNumbers)
+        assertThatThrownBy { Lotto(numbersWithInvalid) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(Lotto.INVALID_LOTTO_NUMBER_ERROR)
+    }
 }
