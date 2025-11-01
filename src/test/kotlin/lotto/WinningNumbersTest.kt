@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class WinningNumbersTest {
     @ParameterizedTest
@@ -22,6 +23,16 @@ class WinningNumbersTest {
         assertThatThrownBy { WinningNumbers(duplicatedNumbers, bonus) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(WinningNumbers.DUPLICATED_ERROR)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, -1, 46])
+    fun `당첨 번호의 숫자 범위가 유효한 범위인지 확인한다`(illegalNumber: Int) {
+        val validNumbers = arrayOf(1, 2, 3, 4, 5)
+        val numbersWithInvalid = listOf(illegalNumber, *validNumbers)
+        assertThatThrownBy { WinningNumbers(numbersWithInvalid, Bonus(7)) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(WinningNumbers.INVALID_NUMBER_ERROR)
     }
 
     companion object {
