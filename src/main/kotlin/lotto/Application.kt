@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.util.ConsoleUserInput
+
 fun main() {
-    // TODO: 프로그램 구현
+    val lottoPurchaseUnit = PurchaseRequest.from(ConsoleUserInput)
 }
