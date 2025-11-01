@@ -32,7 +32,7 @@ class WinningNumbersTest {
         val numbersWithInvalid = listOf(illegalNumber, *validNumbers)
         assertThatThrownBy { WinningNumbers(numbersWithInvalid, Bonus(7)) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(WinningNumbers.INVALID_NUMBER_ERROR)
+            .hasMessage(LottoNumber.INVALID_ERROR)
     }
 
     @Test

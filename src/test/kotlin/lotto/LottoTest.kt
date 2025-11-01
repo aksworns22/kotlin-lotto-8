@@ -38,7 +38,7 @@ class LottoTest {
         val numbersWithInvalid = listOf(illegalNumber, *validNumbers)
         assertThatThrownBy { Lotto(numbersWithInvalid) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Lotto.INVALID_LOTTO_NUMBER_ERROR)
+            .hasMessage(LottoNumber.INVALID_ERROR)
     }
 
     companion object {
