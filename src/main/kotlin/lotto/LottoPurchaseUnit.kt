@@ -9,5 +9,11 @@ data class LottoPurchaseUnit(val count: Int) {
             require(money % VALID_MONEY_UNIT == 0) { INVALID_MONEY_ERROR }
             return LottoPurchaseUnit(money / VALID_MONEY_UNIT)
         }
+
+        fun from(money: Double): LottoPurchaseUnit {
+            require(money >= 0) { INVALID_MONEY_ERROR }
+            require(money % VALID_MONEY_UNIT == 0.0) { INVALID_MONEY_ERROR }
+            return LottoPurchaseUnit((money / VALID_MONEY_UNIT).toInt())
+        }
     }
 }
