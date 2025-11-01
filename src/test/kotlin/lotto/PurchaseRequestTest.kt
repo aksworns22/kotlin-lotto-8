@@ -42,6 +42,7 @@ class PurchaseRequestTest {
     fun `구매 금액을 입력 받는 경우 요구사항에 맞는 메시지를 출력한다`() {
         PurchaseRequest.from(FakeUserInput(listOf("a", "1000")))
         assertThat(output()).contains(
+            "구입금액을 입력해 주세요.",
             LottoPurchaseUnit.INVALID_MONEY_ERROR,
             "1개를 구매했습니다."
         )
