@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.util.UserInput
+
 object PurchaseRequest {
     fun from(userInput: UserInput): LottoPurchaseUnit {
         try {
