@@ -2,7 +2,6 @@ package lotto
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -21,6 +20,14 @@ class LottoPurchaseUnitTest {
     @ValueSource(ints = [-1000, -1])
     fun `구입 금액이 음수라면 예외 처리한다`(negativeMoney: Int) {
         assertThatThrownBy { LottoPurchaseUnit.from(negativeMoney) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(LottoPurchaseUnit.INVALID_MONEY_ERROR)
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = [-500.0, 500.0, 1000.1])
+    fun `구입 금액이 적절하지 못한 소수라면 예외 처리한다`(money: Double) {
+        assertThatThrownBy { LottoPurchaseUnit.from(money) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(LottoPurchaseUnit.INVALID_MONEY_ERROR)
     }
