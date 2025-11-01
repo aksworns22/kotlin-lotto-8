@@ -13,7 +13,7 @@ object PurchaseRequest {
                 return lottoPurchaseUnit
 
             } catch (error: IllegalArgumentException) {
-                println(error)
+                println(error.message)
             }
         }
 
