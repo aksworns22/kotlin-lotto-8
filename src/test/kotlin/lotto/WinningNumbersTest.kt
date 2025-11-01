@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class WinningNumbersTest {
     @ParameterizedTest
-    @MethodSource("InvalidSizeWinningNumbers")
+    @MethodSource("invalidSizeWinningNumbers")
     fun `당첨 번호의 개수를 유효한 개수만큼 뽑지 않으면 예외가 발생한다`(numbers: List<Int>, bonusNumber: Int) {
         assertThatThrownBy { WinningNumbers(numbers, Bonus(bonusNumber)) }
             .isInstanceOf(IllegalArgumentException::class.java)
@@ -35,9 +35,18 @@ class WinningNumbersTest {
             .hasMessage(WinningNumbers.INVALID_NUMBER_ERROR)
     }
 
+    @Test
+    fun `당첨 번호와 보너스가 중복되지 않았는 지 확인한다`() {
+        val numbers = listOf(1, 2, 3, 4, 5, 6)
+        val bonusNumber = Bonus(6)
+        assertThatThrownBy { WinningNumbers(numbers, bonusNumber) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(WinningNumbers.DUPLICATED_WITH_BONUS_ERROR)
+    }
+
     companion object {
         @JvmStatic
-        fun InvalidSizeWinningNumbers(): List<Arguments> {
+        fun invalidSizeWinningNumbers(): List<Arguments> {
             return listOf(
                 Arguments.of(listOf(1, 2, 3, 4, 5), 6),
                 Arguments.of(listOf(1, 2, 3, 4, 5, 6, 7), 8)
