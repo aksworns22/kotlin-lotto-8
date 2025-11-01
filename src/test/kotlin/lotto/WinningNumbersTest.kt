@@ -1,6 +1,7 @@
 package lotto
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -12,6 +13,15 @@ class WinningNumbersTest {
         assertThatThrownBy { WinningNumbers(numbers, Bonus(bonusNumber)) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(WinningNumbers.INVALID_SIZE_ERROR)
+    }
+
+    @Test
+    fun `당첨 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
+        val duplicatedNumbers = listOf(1, 1, 2, 3, 4, 5)
+        val bonus = Bonus(6)
+        assertThatThrownBy { WinningNumbers(duplicatedNumbers, bonus) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(WinningNumbers.DUPLICATED_ERROR)
     }
 
     companion object {
