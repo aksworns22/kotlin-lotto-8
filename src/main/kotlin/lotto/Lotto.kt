@@ -2,14 +2,26 @@ package lotto
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == LOTTO_SIZE) { "[ERROR] 로또 번호는 6개여야 합니다." }
+        require(numbers.size == LOTTO_SIZE) { LOTTO_SIZE_ERROR }
     }
 
     init {
-        require(numbers.distinct().size == LOTTO_SIZE) { "[ERROR] 로또 번호는 중복되어서는 안됩니다." }
+        require(numbers.distinct().size == LOTTO_SIZE) { DUPLICATED_LOTTO_NUMBER_ERROR }
+    }
+
+    init {
+        if (numbers.any { number -> !isValidNumber(number) }) {
+            throw IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR)
+        }
     }
 
     companion object {
         const val LOTTO_SIZE = 6
+        const val MIN_NUMBER = 1
+        const val MAX_NUMBER = 45
+        const val INVALID_LOTTO_NUMBER_ERROR = "[ERROR] 올바른 로또 번호 범위가 아닙니다."
+        const val DUPLICATED_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호는 중복되어서는 안됩니다."
+        const val LOTTO_SIZE_ERROR = "[ERROR] 로또 번호는 ${LOTTO_SIZE}개여야 합니다."
+        fun isValidNumber(number: Int) = number in MIN_NUMBER..MAX_NUMBER
     }
 }
