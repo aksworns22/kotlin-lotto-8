@@ -7,6 +7,8 @@ value class Bonus(val number: Int) {
     }
 
     companion object {
+        const val MATCH = true
+        const val NOT_MATCH = false
         fun from(input: String): Bonus {
             val number = input.toIntOrNull() ?: throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
             return Bonus(number)
