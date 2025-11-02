@@ -1,5 +1,6 @@
-package lotto
+package lotto.request
 
+import lotto.LottoPurchaseUnit
 import lotto.util.UserInput
 
 object PurchaseRequest {
@@ -8,7 +9,7 @@ object PurchaseRequest {
             try {
                 println("구입금액을 입력해 주세요.")
                 val money = userInput.readLine().trim()
-                val lottoPurchaseUnit = LottoPurchaseUnit.from(money)
+                val lottoPurchaseUnit = LottoPurchaseUnit.Companion.from(money)
                 println("\n${lottoPurchaseUnit.count}개를 구매했습니다.")
                 return lottoPurchaseUnit
 

@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.request.RegularNumbersRequest
 import lotto.util.FakeUserInput
 import lotto.util.UserInput
 import org.assertj.core.api.Assertions.assertThat

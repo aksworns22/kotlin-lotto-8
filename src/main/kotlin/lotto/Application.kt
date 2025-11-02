@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.request.PurchaseRequest
+import lotto.request.RegularNumbersRequest
 import lotto.util.ConsoleUserInput
 import lotto.util.UniqueRandomGenerator
 
