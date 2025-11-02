@@ -1,5 +1,6 @@
 package lotto
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -47,6 +48,14 @@ class LottoTest {
         assertThatCode { Lotto.fromRandom() }
             .describedAs("랜덤 숫자 생성과 관련한 문제가 있습니다")
             .doesNotThrowAnyException()
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 2])
+    fun `구매한 개수만큼 랜덤한 숫자로 구성된 로또를 발행한다`(count: Int) {
+        val numberOfLotto = LottoPurchaseUnit(count)
+        assertThat(Lotto.fromRandom(numberOfLotto))
+            .hasSize(count)
     }
 
     companion object {
