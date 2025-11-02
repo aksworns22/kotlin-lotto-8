@@ -2,6 +2,12 @@ package lotto
 
 import lotto.util.RandomGenerator
 
+fun List<Lotto>.print() {
+    this.forEach {
+        println(it.toString())
+    }
+}
+
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == LOTTO_SIZE) { LOTTO_SIZE_ERROR }
@@ -15,6 +21,11 @@ class Lotto(private val numbers: List<Int>) {
         if (numbers.any { number -> !LottoNumber.isValidNumber(number) }) {
             throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
         }
+    }
+
+    override fun toString(): String {
+        val sortedNumbers = numbers.sorted()
+        return sortedNumbers.toString()
     }
 
     companion object {
