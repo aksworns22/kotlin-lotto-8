@@ -1,6 +1,6 @@
 package lotto
 
-import camp.nextstep.edu.missionutils.Randoms
+import lotto.util.RandomGenerator
 
 class Lotto(private val numbers: List<Int>) {
     init {
@@ -21,15 +21,15 @@ class Lotto(private val numbers: List<Int>) {
         const val LOTTO_SIZE = 6
         const val DUPLICATED_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호는 중복되어서는 안됩니다."
         const val LOTTO_SIZE_ERROR = "[ERROR] 로또 번호는 ${LOTTO_SIZE}개여야 합니다."
-        fun fromRandom(): Lotto {
+        fun from(randomGenerator: RandomGenerator): Lotto {
             val minNumber = LottoNumber.MIN_NUMBER
             val maxNumber = LottoNumber.MAX_NUMBER
-            val randomNumbers = Randoms.pickUniqueNumbersInRange(minNumber, maxNumber, LOTTO_SIZE)
+            val randomNumbers = randomGenerator.pickUniqueNumbersInRange(minNumber, maxNumber, LOTTO_SIZE)
             return Lotto(randomNumbers)
         }
 
-        fun fromRandom(numberOfLotto: LottoPurchaseUnit): List<Lotto> {
-            return (0..<numberOfLotto.count).map { fromRandom() }
+        fun from(randomGenerator: RandomGenerator, numberOfLotto: LottoPurchaseUnit): List<Lotto> {
+            return (0..<numberOfLotto.count).map { from(randomGenerator) }
         }
     }
 }
