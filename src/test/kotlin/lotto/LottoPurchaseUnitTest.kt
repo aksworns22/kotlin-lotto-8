@@ -17,8 +17,8 @@ class LottoPurchaseUnitTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["-1000", "-1"])
-    fun `구입 금액이 음수라면 예외 처리한다`(negativeMoney: String) {
+    @ValueSource(strings = ["-1000", "-1", "0"])
+    fun `구입 금액이 양수가 아니라면 예외 처리한다`(negativeMoney: String) {
         assertThatThrownBy { LottoPurchaseUnit.from(negativeMoney) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(LottoPurchaseUnit.INVALID_MONEY_ERROR)
