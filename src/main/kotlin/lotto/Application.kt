@@ -8,4 +8,6 @@ fun main() {
 
     val boughtLotto = Lotto.from(UniqueRandomGenerator, lottoPurchaseUnit)
     boughtLotto.print()
+
+    val regularNumbers = RegularNumbersRequest.from(ConsoleUserInput)
 }

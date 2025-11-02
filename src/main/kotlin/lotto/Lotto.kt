@@ -6,6 +6,7 @@ fun List<Lotto>.print() {
     this.forEach {
         println(it.toString())
     }
+    println()
 }
 
 class Lotto(private val numbers: List<Int>) {
