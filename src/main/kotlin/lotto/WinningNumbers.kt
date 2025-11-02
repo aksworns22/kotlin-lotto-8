@@ -36,4 +36,3 @@ value class RegularNumbers(val numbers: List<Int>) {
         const val DUPLICATED_ERROR = "[ERROR] 정규 번호는 중복되어서는 안됩니다."
     }
 }
-

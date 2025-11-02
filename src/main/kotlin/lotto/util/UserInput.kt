@@ -17,4 +17,3 @@ class FakeUserInput(input: List<String>) : UserInput {
         return iterator.next()
     }
 }
-
