@@ -48,9 +48,32 @@ class OutputTest {
         val fakeRandomGenerator = FakeRandomGenerator(randomNumbers)
         val boughtLotto = Lotto.from(fakeRandomGenerator, LottoPurchaseUnit(2))
         boughtLotto.print()
-        assertThat(output().trim()).contains(
+        assertThat(output()).contains(
             "[1, 2, 3, 4, 5, 6]",
             "[1, 2, 3, 4, 44, 45]"
+        )
+    }
+
+    @Test
+    fun `정규 번호를 입력 받는 경우 요구사항에 맞는 메시지를 출력한다`() {
+        RegularNumbersRequest.from(
+            FakeUserInput(
+                listOf(
+                    "1",
+                    "1,1,2,3,4,5",
+                    "a,1,2,3,4,5",
+                    "-1,2,3,4,5,6",
+                    "1,2,3,4,5,46",
+                    "1.0,2,3,4,5,6",
+                    "1,2,3,4,5,6"
+                )
+            )
+        )
+        assertThat(output()).contains(
+            "당첨 번호를 입력해 주세요.",
+            LottoNumber.INVALID_ERROR,
+            RegularNumbers.INVALID_SIZE_ERROR,
+            RegularNumbers.DUPLICATED_ERROR,
         )
     }
 }
