@@ -34,5 +34,16 @@ value class RegularNumbers(val numbers: List<Int>) {
         const val SIZE_WITHOUT_BONUS = 6
         const val INVALID_SIZE_ERROR = "[ERROR] 당첨 번호는 보너스 제외 ${SIZE_WITHOUT_BONUS}개여야 합니다."
         const val DUPLICATED_ERROR = "[ERROR] 정규 번호는 중복되어서는 안됩니다."
+        fun from(input: List<String>): RegularNumbers {
+            val trimmedInput = input.map { it.trim() }
+            if (trimmedInput.any { it.toIntOrNull() == null }) {
+                throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
+            }
+            val numbers = trimmedInput.map { it.toInt() }
+            if (numbers.any { !LottoNumber.isValidNumber(it) }) {
+                throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
+            }
+            return RegularNumbers(numbers)
+        }
     }
 }

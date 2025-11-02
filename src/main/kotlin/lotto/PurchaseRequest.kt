@@ -16,6 +16,5 @@ object PurchaseRequest {
                 println(error.message)
             }
         }
-
     }
 }
