@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.request.BonusNumberRequest
 import lotto.request.PurchaseRequest
 import lotto.request.RegularNumbersRequest
 import lotto.util.FakeRandomGenerator
@@ -76,6 +77,15 @@ class OutputTest {
             LottoNumber.INVALID_ERROR,
             RegularNumbers.INVALID_SIZE_ERROR,
             RegularNumbers.DUPLICATED_ERROR,
+        )
+    }
+
+    @Test
+    fun `보너스 번호를 입력 받는 경우 요구사항에 맞는 메시지를 출력한다`() {
+        BonusNumberRequest.from(FakeUserInput(listOf("a", "-1", "46", "5")))
+        assertThat(output()).contains(
+            "보너스 번호를 입력해 주세요.",
+            LottoNumber.INVALID_ERROR,
         )
     }
 }
