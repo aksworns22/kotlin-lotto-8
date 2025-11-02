@@ -27,5 +27,9 @@ class Lotto(private val numbers: List<Int>) {
             val randomNumbers = Randoms.pickUniqueNumbersInRange(minNumber, maxNumber, LOTTO_SIZE)
             return Lotto(randomNumbers)
         }
+
+        fun fromRandom(numberOfLotto: LottoPurchaseUnit): List<Lotto> {
+            return (0..<numberOfLotto.count).map { fromRandom() }
+        }
     }
 }
