@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.util.FakeRandomGenerator
 import lotto.util.FakeUserInput
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
@@ -35,6 +36,21 @@ class OutputTest {
             "구입금액을 입력해 주세요.",
             LottoPurchaseUnit.INVALID_MONEY_ERROR,
             "1개를 구매했습니다."
+        )
+    }
+
+    @Test
+    fun `구매한 로또를 오름차순으로 정렬해서 보여준다`() {
+        val randomNumbers = listOf(
+            listOf(6, 5, 4, 3, 2, 1),
+            listOf(45, 1, 2, 4, 3, 44)
+        )
+        val fakeRandomGenerator = FakeRandomGenerator(randomNumbers)
+        val boughtLotto = Lotto.from(fakeRandomGenerator, LottoPurchaseUnit(2))
+        boughtLotto.print()
+        assertThat(output().trim()).contains(
+            "[1, 2, 3, 4, 5, 6]",
+            "[1, 2, 3, 4, 44, 45]"
         )
     }
 }
