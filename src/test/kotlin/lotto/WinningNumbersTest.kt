@@ -9,35 +9,32 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class WinningNumbersTest {
     @ParameterizedTest
-    @MethodSource("invalidSizeWinningNumbers")
-    fun `당첨 번호의 개수를 유효한 개수만큼 뽑지 않으면 예외가 발생한다`(numbers: List<Int>, bonusNumber: Int) {
-        assertThatThrownBy { WinningNumbers(numbers, Bonus(bonusNumber)) }
+    @MethodSource("invalidSizeRegularNumbers")
+    fun `정규 번호 개수를 유효한만큼 뽑지 않으면 예외가 발생한다`(numbers: List<Int>) {
+        assertThatThrownBy { RegularNumbers(numbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(WinningNumbers.INVALID_SIZE_ERROR)
+            .hasMessage(RegularNumbers.INVALID_SIZE_ERROR)
     }
 
     @Test
-    fun `당첨 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
-        val duplicatedNumbers = listOf(1, 1, 2, 3, 4, 5)
-        val bonus = Bonus(6)
-        assertThatThrownBy { WinningNumbers(duplicatedNumbers, bonus) }
+    fun `정규 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
+        assertThatThrownBy { RegularNumbers(listOf(1, 1, 2, 3, 4, 5)) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(WinningNumbers.DUPLICATED_ERROR)
+            .hasMessage(RegularNumbers.DUPLICATED_ERROR)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [0, -1, 46])
-    fun `당첨 번호의 숫자 범위가 유효한 범위인지 확인한다`(illegalNumber: Int) {
+    fun `정규 번호의 숫자 범위가 유효한 범위인지 확인한다`(illegalNumber: Int) {
         val validNumbers = arrayOf(1, 2, 3, 4, 5)
-        val numbersWithInvalid = listOf(illegalNumber, *validNumbers)
-        assertThatThrownBy { WinningNumbers(numbersWithInvalid, Bonus(7)) }
+        assertThatThrownBy { RegularNumbers(listOf(illegalNumber, *validNumbers)) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage(LottoNumber.INVALID_ERROR)
     }
 
     @Test
-    fun `당첨 번호와 보너스가 중복되지 않았는 지 확인한다`() {
-        val numbers = listOf(1, 2, 3, 4, 5, 6)
+    fun `정규 번호와 보너스가 중복되지 않았는 지 확인한다`() {
+        val numbers = RegularNumbers(listOf(1, 2, 3, 4, 5, 6))
         val bonusNumber = Bonus(6)
         assertThatThrownBy { WinningNumbers(numbers, bonusNumber) }
             .isInstanceOf(IllegalArgumentException::class.java)
@@ -46,10 +43,10 @@ class WinningNumbersTest {
 
     companion object {
         @JvmStatic
-        fun invalidSizeWinningNumbers(): List<Arguments> {
+        fun invalidSizeRegularNumbers(): List<Arguments> {
             return listOf(
-                Arguments.of(listOf(1, 2, 3, 4, 5), 6),
-                Arguments.of(listOf(1, 2, 3, 4, 5, 6, 7), 8)
+                Arguments.of(listOf(1, 2, 3, 4, 5)),
+                Arguments.of(listOf(1, 2, 3, 4, 5, 6, 7))
             )
         }
     }
