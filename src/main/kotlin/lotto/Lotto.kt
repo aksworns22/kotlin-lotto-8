@@ -29,6 +29,14 @@ class Lotto(private val numbers: List<Int>) {
         return sortedNumbers.toString()
     }
 
+    fun countRegularMatches(winningNumbers: WinningNumbers): Int {
+        return numbers.count { winningNumbers.hasRegular(it) }
+    }
+
+    fun isBonusMatch(winningNumbers: WinningNumbers): Boolean {
+        return numbers.any { winningNumbers.isBonusMatch(it) }
+    }
+
     companion object {
         const val LOTTO_SIZE = 6
         const val DUPLICATED_LOTTO_NUMBER_ERROR = "[ERROR] 로또 번호는 중복되어서는 안됩니다."
@@ -38,6 +46,7 @@ class Lotto(private val numbers: List<Int>) {
         const val MATCH_4 = 4
         const val MATCH_3 = 3
         const val MATCH_2 = 2
+        const val MATCH_1 = 1
         const val MATCH_0 = 0
         fun from(randomGenerator: RandomGenerator): Lotto {
             val minNumber = LottoNumber.MIN_NUMBER
