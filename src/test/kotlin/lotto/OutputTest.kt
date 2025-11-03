@@ -88,4 +88,19 @@ class OutputTest {
             LottoNumber.INVALID_ERROR,
         )
     }
+
+    @Test
+    fun `구매한 모든 로또들에 대한 당첨 내역을 출력한다`() {
+        val rankResult = RankResult.of(listOf(Rank.FIRST, Rank.NONE, Rank.SECOND, Rank.THIRD, Rank.NONE, Rank.SECOND))
+        rankResult.print()
+        assertThat(output()).contains(
+            "당첨 통계",
+            "---",
+            "${Rank.FIFTH.condition} (${Rank.FIFTH.prize}원) - 0개",
+            "${Rank.FOURTH.condition} (${Rank.FOURTH.prize}원) - 0개",
+            "${Rank.THIRD.condition} (${Rank.THIRD.prize}원) - 1개",
+            "${Rank.SECOND.condition} (${Rank.SECOND.prize}원) - 2개",
+            "${Rank.FIRST.condition} (${Rank.FIRST.prize}원) - 1개"
+        )
+    }
 }
