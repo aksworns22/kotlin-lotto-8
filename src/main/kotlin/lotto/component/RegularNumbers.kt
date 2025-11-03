@@ -26,10 +26,9 @@ value class RegularNumbers(val numbers: List<Int>) {
         const val DUPLICATED_ERROR_MESSAGE = "[ERROR] 정규 번호는 중복되어서는 안됩니다."
         fun from(input: List<String>): RegularNumbers {
             val trimmedInput = input.map { rawInput -> rawInput.trim() }
-            if (trimmedInput.any { numberInput -> numberInput.toIntOrNull() == null }) {
-                throw IllegalArgumentException(LottoNumber.INVALID_ERROR_MESSAGE)
+            val numbers = trimmedInput.map { number ->
+                number.toIntOrNull() ?: throw IllegalArgumentException(LottoNumber.NOT_NUMBER_ERROR_MESSAGE)
             }
-            val numbers = trimmedInput.map { number -> number.toInt() }
             if (numbers.any { number -> !LottoNumber.isValidNumber(number) }) {
                 throw IllegalArgumentException(LottoNumber.INVALID_ERROR_MESSAGE)
             }

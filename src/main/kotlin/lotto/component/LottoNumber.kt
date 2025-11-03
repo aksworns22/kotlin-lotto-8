@@ -4,5 +4,6 @@ object LottoNumber {
     const val MIN_NUMBER = 1
     const val MAX_NUMBER = 45
     const val INVALID_ERROR_MESSAGE = "[ERROR] 올바른 로또 번호 범위가 아닙니다."
+    const val NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자가 아닙니다."
     fun isValidNumber(number: Int) = number in MIN_NUMBER..MAX_NUMBER
 }
