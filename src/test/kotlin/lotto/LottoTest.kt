@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.component.LottoNumber
+import lotto.result.LottoPurchaseUnit
 import lotto.util.UniqueRandomGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode

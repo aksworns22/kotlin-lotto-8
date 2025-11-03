@@ -1,4 +1,4 @@
-package lotto
+package lotto.component
 
 @JvmInline
 value class Bonus(val number: Int) {

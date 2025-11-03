@@ -2,6 +2,8 @@ package lotto
 
 import lotto.request.PurchaseRequest
 import lotto.request.WinningNumbersRequest
+import lotto.result.LottoResult
+import lotto.result.RankResult
 import lotto.util.ConsoleUserInput
 import lotto.util.UniqueRandomGenerator
 

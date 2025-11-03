@@ -1,4 +1,6 @@
-package lotto
+package lotto.result
+
+import lotto.Rank
 
 @JvmInline
 value class RankResult(val count: Map<Rank, Int>) {
@@ -15,7 +17,7 @@ value class RankResult(val count: Map<Rank, Int>) {
     fun print() {
         println("당첨 통계")
         println("---")
-        for (rank in Rank.descendingRanks()) {
+        for (rank in Rank.Companion.descendingRanks()) {
             println("${rank.condition} (${rank.prize}원) - ${count[rank]}개")
         }
     }

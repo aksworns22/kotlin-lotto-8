@@ -1,6 +1,6 @@
 package lotto.request
 
-import lotto.LottoPurchaseUnit
+import lotto.result.LottoPurchaseUnit
 import lotto.util.UserInput
 
 object PurchaseRequest {

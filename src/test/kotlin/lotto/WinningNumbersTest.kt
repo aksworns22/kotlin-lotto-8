@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.component.Bonus
+import lotto.component.LottoNumber
+import lotto.component.RegularNumbers
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest

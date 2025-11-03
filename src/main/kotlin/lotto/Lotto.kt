@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.component.LottoNumber
+import lotto.result.LottoPurchaseUnit
 import lotto.util.RandomGenerator
 
 fun List<Lotto>.print() {

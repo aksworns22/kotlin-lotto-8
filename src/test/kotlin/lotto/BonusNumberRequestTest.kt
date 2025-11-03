@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.component.Bonus
 import lotto.request.BonusNumberRequest
 import lotto.util.FakeUserInput
 import lotto.util.UserInput

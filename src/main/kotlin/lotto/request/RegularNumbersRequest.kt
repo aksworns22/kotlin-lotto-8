@@ -1,6 +1,6 @@
 package lotto.request
 
-import lotto.RegularNumbers
+import lotto.component.RegularNumbers
 import lotto.util.UserInput
 
 object RegularNumbersRequest {

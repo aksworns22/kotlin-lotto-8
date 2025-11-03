@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.result.LottoPurchaseUnit
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.params.ParameterizedTest

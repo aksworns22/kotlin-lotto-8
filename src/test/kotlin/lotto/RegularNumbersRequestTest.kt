@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.component.RegularNumbers
 import lotto.request.RegularNumbersRequest
 import lotto.util.FakeUserInput
 import lotto.util.UserInput

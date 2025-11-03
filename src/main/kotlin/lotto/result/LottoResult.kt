@@ -1,4 +1,7 @@
-package lotto
+package lotto.result
+
+import lotto.Lotto
+import lotto.WinningNumbers
 
 data class LottoResult(val matchCount: Int, val bonusMatch: Boolean) {
     companion object {

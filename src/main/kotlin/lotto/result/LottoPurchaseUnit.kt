@@ -1,4 +1,4 @@
-package lotto
+package lotto.result
 
 data class LottoPurchaseUnit(val count: Int) {
     val totalMoney = count * VALID_MONEY_UNIT

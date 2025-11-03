@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.result.LottoPurchaseUnit
+import lotto.result.RankResult
+
 data class Profit(val rankResult: RankResult, val lottoPurchaseUnit: LottoPurchaseUnit) {
     val earnMoney = Rank.entries.sumOf { it.prize.money * rankResult.count[it]!! }
     val purchaseMoney = lottoPurchaseUnit.totalMoney

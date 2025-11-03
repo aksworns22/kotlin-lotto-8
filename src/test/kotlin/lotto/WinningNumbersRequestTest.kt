@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.component.Bonus
+import lotto.component.RegularNumbers
 import lotto.request.WinningNumbersRequest
 import lotto.util.FakeUserInput
 import org.assertj.core.api.Assertions.assertThat

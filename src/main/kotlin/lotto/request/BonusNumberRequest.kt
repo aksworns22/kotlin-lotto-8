@@ -1,6 +1,6 @@
 package lotto.request
 
-import lotto.Bonus
+import lotto.component.Bonus
 import lotto.util.UserInput
 
 object BonusNumberRequest {

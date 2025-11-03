@@ -1,8 +1,12 @@
 package lotto
 
+import lotto.component.LottoNumber
+import lotto.component.RegularNumbers
 import lotto.request.BonusNumberRequest
 import lotto.request.PurchaseRequest
 import lotto.request.RegularNumbersRequest
+import lotto.result.LottoPurchaseUnit
+import lotto.result.RankResult
 import lotto.util.FakeRandomGenerator
 import lotto.util.FakeUserInput
 import org.assertj.core.api.Assertions.assertThat

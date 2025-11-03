@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.request.PurchaseRequest
+import lotto.result.LottoPurchaseUnit
 import lotto.util.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest

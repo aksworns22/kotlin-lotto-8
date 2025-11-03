@@ -1,4 +1,4 @@
-package lotto
+package lotto.component
 
 object LottoNumber {
     const val MIN_NUMBER = 1

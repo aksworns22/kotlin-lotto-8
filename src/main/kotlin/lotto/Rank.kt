@@ -1,5 +1,9 @@
 package lotto
 
+import lotto.component.Bonus
+import lotto.component.Prize
+import lotto.result.LottoResult
+
 enum class Rank(val results: Set<LottoResult>, val condition: String, val prize: Prize) {
     FIRST(setOf(LottoResult(Lotto.MATCH_6, Bonus.NOT_MATCH)), "6개 일치", Prize(2_000_000_000)),
     SECOND(setOf(LottoResult(Lotto.MATCH_5, Bonus.MATCH)), "5개 일치, 보너스 볼 일치", Prize(30_000_000)),
