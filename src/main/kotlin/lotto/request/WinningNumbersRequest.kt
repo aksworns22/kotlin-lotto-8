@@ -1,6 +1,5 @@
 package lotto.request
 
-import lotto.Bonus
 import lotto.WinningNumbers
 import lotto.util.UserInput
 

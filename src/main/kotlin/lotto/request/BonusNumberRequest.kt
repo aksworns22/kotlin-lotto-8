@@ -1,7 +1,6 @@
 package lotto.request
 
 import lotto.Bonus
-import lotto.LottoPurchaseUnit
 import lotto.util.UserInput
 
 object BonusNumberRequest {
