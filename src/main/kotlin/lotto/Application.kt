@@ -14,13 +14,18 @@ fun List<Lotto>.print() {
     println()
 }
 
+fun List<Lotto>.compareTo(winningNumbers: WinningNumbers): List<LottoResult> =
+    this.map { lotto -> LottoResult.of(lotto, winningNumbers) }
+
+fun List<LottoResult>.calculateRank() = this.map { lottoResult -> Rank.from(lottoResult) }
+
 fun main() {
     val lottoPurchaseUnit = PurchaseRequest.from(ConsoleUserInput)
     val boughtLotto = Lotto.from(UniqueRandomGenerator, lottoPurchaseUnit)
     boughtLotto.print()
     val winningNumbers = WinningNumbersRequest.from(ConsoleUserInput)
-    val lottoResults = boughtLotto.map { lotto -> LottoResult.of(lotto, winningNumbers) }
-    val rankResult = RankResult.of(lottoResults.map { lottoResult -> Rank.from(lottoResult) })
+    val lottoResults = boughtLotto.compareTo(winningNumbers)
+    val rankResult = RankResult.of(lottoResults.calculateRank())
     rankResult.print()
     val profit = Profit(rankResult, lottoPurchaseUnit)
     profit.printRate()
