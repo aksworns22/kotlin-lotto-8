@@ -6,7 +6,7 @@ import lotto.util.RandomGenerator
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == SIZE) { SIZE_ERROR }
+        require(numbers.size == SIZE) { SIZE_ERROR_MESSAGE }
     }
 
     init {
@@ -35,7 +35,7 @@ class Lotto(private val numbers: List<Int>) {
     companion object {
         const val SIZE = 6
         const val DUPLICATED_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복되어서는 안됩니다."
-        const val SIZE_ERROR = "[ERROR] 로또 번호는 ${SIZE}개여야 합니다."
+        const val SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 ${SIZE}개여야 합니다."
         const val MATCH_6 = 6
         const val MATCH_5 = 5
         const val MATCH_4 = 4

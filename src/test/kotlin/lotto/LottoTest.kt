@@ -33,7 +33,7 @@ class LottoTest {
     fun `로또 번호의 개수를 유효한 개수만큼 뽑지 않으면 예외가 발생한다`(invalidSizeNumbers: List<Int>) {
         assertThatThrownBy { Lotto(invalidSizeNumbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(Lotto.SIZE_ERROR)
+            .hasMessage(Lotto.SIZE_ERROR_MESSAGE)
     }
 
     @ParameterizedTest
