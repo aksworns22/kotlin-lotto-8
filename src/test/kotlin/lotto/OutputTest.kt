@@ -78,9 +78,9 @@ class OutputTest {
         )
         assertThat(output()).contains(
             "당첨 번호를 입력해 주세요.",
-            LottoNumber.INVALID_ERROR,
-            RegularNumbers.INVALID_SIZE_ERROR,
-            RegularNumbers.DUPLICATED_ERROR,
+            LottoNumber.INVALID_ERROR_MESSAGE,
+            RegularNumbers.INVALID_SIZE_ERROR_MESSAGE,
+            RegularNumbers.DUPLICATED_ERROR_MESSAGE,
         )
     }
 
@@ -89,7 +89,7 @@ class OutputTest {
         BonusNumberRequest.from(FakeUserInput(listOf("a", "-1", "46", "5")))
         assertThat(output()).contains(
             "보너스 번호를 입력해 주세요.",
-            LottoNumber.INVALID_ERROR,
+            LottoNumber.INVALID_ERROR_MESSAGE,
         )
     }
 

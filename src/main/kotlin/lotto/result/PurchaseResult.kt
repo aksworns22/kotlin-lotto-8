@@ -11,7 +11,7 @@ data class PurchaseResult(val count: Int) {
         const val VALID_MONEY_UNIT = 1000
         const val INVALID_MONEY_ERROR = "[ERROR] 유효하지 않은 구입 금액입니다."
         const val INVALID_UNIT_ERROR = "[ERROR] 유효하지 않은 단위입니다."
-        fun from(input: String): PurchaseResult {
+        fun of(input: String): PurchaseResult {
             val money = input.toDoubleOrNull() ?: throw IllegalArgumentException(INVALID_MONEY_ERROR)
             validateMoney(money)
             return PurchaseResult(money.toInt() / VALID_MONEY_UNIT)

@@ -18,19 +18,19 @@ enum class Rank(val results: Set<LottoResult>, val condition: String, val prize:
         "3개 일치",
         Prize(5_000)
     ),
-    NONE((Lotto.MATCH_0..Lotto.MATCH_2).flatMap {
+    NONE((Lotto.MATCH_0..Lotto.MATCH_2).flatMap { matchCount ->
         listOf(
-            LottoResult(it, Bonus.MATCH),
-            LottoResult(it, Bonus.NOT_MATCH)
+            LottoResult(matchCount, Bonus.MATCH),
+            LottoResult(matchCount, Bonus.NOT_MATCH)
         )
     }.toSet(), "2개 이하 일치", Prize(0));
 
     companion object {
-        const val INVALID_LOTTO_RESULT = "[ERROR] 올바른 등수를 찾을 수 없습니다"
+        const val INVALID_LOTTO_RESULT_MESSAGE = "[ERROR] 올바른 등수를 찾을 수 없습니다"
         fun from(result: LottoResult): Rank {
-            return entries.find {
-                it.results.contains(result)
-            } ?: throw IllegalArgumentException(INVALID_LOTTO_RESULT)
+            return entries.find { rank ->
+                rank.results.contains(result)
+            } ?: throw IllegalArgumentException(INVALID_LOTTO_RESULT_MESSAGE)
         }
 
         fun descendingRanks(): List<Rank> = listOf(FIFTH, FOURTH, THIRD, SECOND, FIRST)

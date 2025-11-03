@@ -9,7 +9,7 @@ object PurchaseRequest {
             try {
                 println("구입금액을 입력해 주세요.")
                 val money = userInput.readLine().trim()
-                val purchaseResult = PurchaseResult.from(money)
+                val purchaseResult = PurchaseResult.of(money)
                 println("\n${purchaseResult.count}개를 구매했습니다.")
                 return purchaseResult
 

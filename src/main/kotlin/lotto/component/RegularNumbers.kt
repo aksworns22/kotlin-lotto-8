@@ -3,17 +3,17 @@ package lotto.component
 @JvmInline
 value class RegularNumbers(val numbers: List<Int>) {
     init {
-        require(numbers.size == SIZE_WITHOUT_BONUS) { INVALID_SIZE_ERROR }
+        require(numbers.size == SIZE) { INVALID_SIZE_ERROR_MESSAGE }
     }
 
     init {
         if (numbers.any { number -> !LottoNumber.isValidNumber(number) }) {
-            throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
+            throw IllegalArgumentException(LottoNumber.INVALID_ERROR_MESSAGE)
         }
     }
 
     init {
-        require(getDistinctNumbers().size == SIZE_WITHOUT_BONUS) { DUPLICATED_ERROR }
+        require(getDistinctNumbers().size == SIZE) { DUPLICATED_ERROR_MESSAGE }
     }
 
     private fun getDistinctNumbers(): Set<Int> = numbers.toSet()
@@ -21,17 +21,17 @@ value class RegularNumbers(val numbers: List<Int>) {
     fun contains(number: Int) = getDistinctNumbers().contains(number)
 
     companion object {
-        const val SIZE_WITHOUT_BONUS = 6
-        const val INVALID_SIZE_ERROR = "[ERROR] 당첨 번호는 보너스 제외 ${SIZE_WITHOUT_BONUS}개여야 합니다."
-        const val DUPLICATED_ERROR = "[ERROR] 정규 번호는 중복되어서는 안됩니다."
+        const val SIZE = 6
+        const val INVALID_SIZE_ERROR_MESSAGE = "[ERROR] 당첨 번호는 보너스 제외 ${SIZE}개여야 합니다."
+        const val DUPLICATED_ERROR_MESSAGE = "[ERROR] 정규 번호는 중복되어서는 안됩니다."
         fun from(input: List<String>): RegularNumbers {
-            val trimmedInput = input.map { it.trim() }
-            if (trimmedInput.any { it.toIntOrNull() == null }) {
-                throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
+            val trimmedInput = input.map { rawInput -> rawInput.trim() }
+            if (trimmedInput.any { numberInput -> numberInput.toIntOrNull() == null }) {
+                throw IllegalArgumentException(LottoNumber.INVALID_ERROR_MESSAGE)
             }
-            val numbers = trimmedInput.map { it.toInt() }
-            if (numbers.any { !LottoNumber.isValidNumber(it) }) {
-                throw IllegalArgumentException(LottoNumber.INVALID_ERROR)
+            val numbers = trimmedInput.map { number -> number.toInt() }
+            if (numbers.any { number -> !LottoNumber.isValidNumber(number) }) {
+                throw IllegalArgumentException(LottoNumber.INVALID_ERROR_MESSAGE)
             }
             return RegularNumbers(numbers)
         }

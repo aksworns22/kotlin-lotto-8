@@ -4,7 +4,7 @@ import lotto.result.PurchaseResult
 import lotto.result.RankResult
 
 data class Profit(val rankResult: RankResult, val purchaseResult: PurchaseResult) {
-    val earnMoney = Rank.entries.sumOf { it.prize.money * rankResult.count[it]!! }
+    val earnMoney = Rank.entries.sumOf { rank -> rank.prize.money * rankResult.count[rank]!! }
     val purchaseMoney = purchaseResult.totalMoney
     val rate = earnMoney.toDouble() / purchaseMoney.toDouble()
 

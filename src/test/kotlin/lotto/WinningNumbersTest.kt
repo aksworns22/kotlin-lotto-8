@@ -16,14 +16,14 @@ class WinningNumbersTest {
     fun `정규 번호 개수를 유효한만큼 뽑지 않으면 예외가 발생한다`(numbers: List<Int>) {
         assertThatThrownBy { RegularNumbers(numbers) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(RegularNumbers.INVALID_SIZE_ERROR)
+            .hasMessage(RegularNumbers.INVALID_SIZE_ERROR_MESSAGE)
     }
 
     @Test
     fun `정규 번호에 중복된 숫자가 있으면 예외가 발생한다`() {
         assertThatThrownBy { RegularNumbers(listOf(1, 1, 2, 3, 4, 5)) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(RegularNumbers.DUPLICATED_ERROR)
+            .hasMessage(RegularNumbers.DUPLICATED_ERROR_MESSAGE)
     }
 
     @ParameterizedTest
@@ -32,7 +32,7 @@ class WinningNumbersTest {
         val validNumbers = arrayOf(1, 2, 3, 4, 5)
         assertThatThrownBy { RegularNumbers(listOf(illegalNumber, *validNumbers)) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(LottoNumber.INVALID_ERROR)
+            .hasMessage(LottoNumber.INVALID_ERROR_MESSAGE)
     }
 
     @Test
@@ -41,7 +41,7 @@ class WinningNumbersTest {
         val bonusNumber = Bonus(6)
         assertThatThrownBy { WinningNumbers(numbers, bonusNumber) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(WinningNumbers.DUPLICATED_WITH_BONUS_ERROR)
+            .hasMessage(WinningNumbers.DUPLICATED_WITH_BONUS_ERROR_MESSAGE)
     }
 
     companion object {
