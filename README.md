@@ -64,7 +64,20 @@
 | `PurchaseResult` | 로또를 몇 개 구매했는 지 저장합니다             |
 | `Lotto`          | 로또 번호를 저장합니다                     |
 | `WinningNumbers` | 당첨 번호를 저장하며 정규 번호와 보너스 번호로 구성됩니다 |
+| `RegularNumbers` | 정규 번호를 저장합니다                     |
+| `Bonus`          | 보너스 번호를 저장합니다                    |
 | `LottoResult`    | 로또와 당첨 번호의 비교 결과를 저장합니다          |
 | `Rank`           | 로또 결과를 바탕으로 등수를 판단합니다            |
 | `RankResult`     | 당첨 결과를 저장합니다                     |
 | `Profit`         | 로또 구매 개수와 당첨 결과를 바탕으로 수익률을 계산합니다 |
+
+## 주요 진행 흐름
+
+1. 돈 단위의 유효성을 판단해 로또의 개수를 생성합니다(`PurchaseResult`)
+2. 로또(`Lotto`)를 `PurchaseResult`가 저장한 개수만큼 생성합니다
+3. 당첨 번호를 생성합니다(`WinningNumbers`)
+    - 유효한 정규 번호를 만듭니다(`RegularNumbers`)
+    - 유효한 보너스 번호를 만듭니다(`Bonus`)
+4. 당첨 번호와 구매한 로또를 비교합니다(`LottoResult`)
+5. 로또 결과(`LottoResult`)를 바탕으로 `Rank`를 통해 당첨 결과(`RankResult`)을 얻습니다
+6. 얻어진 당첨 결과(`RankResult`)와 로또 구매 개수(`PurchaseResult`)를 통해 수익률을 계산합니다.(`Profit`)
