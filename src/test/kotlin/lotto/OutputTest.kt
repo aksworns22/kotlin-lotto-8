@@ -103,4 +103,12 @@ class OutputTest {
             "${Rank.FIRST.condition} (${Rank.FIRST.prize}원) - 1개"
         )
     }
+
+    @Test
+    fun `계산한 수익률을 출력한다`() {
+        val rankResult = RankResult.of(listOf(Rank.FIFTH))
+        val lottoPurchaseUnit = LottoPurchaseUnit(8)
+        Profit(rankResult, lottoPurchaseUnit).printRate()
+        assertThat(output()).contains("총 수익률은 62.5%입니다.")
+    }
 }
