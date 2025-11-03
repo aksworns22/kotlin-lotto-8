@@ -11,7 +11,6 @@ fun List<Lotto>.print() {
     this.forEach { lotto ->
         println(lotto.toString())
     }
-    println()
 }
 
 fun List<Lotto>.compareTo(winningNumbers: WinningNumbers): List<LottoResult> =
