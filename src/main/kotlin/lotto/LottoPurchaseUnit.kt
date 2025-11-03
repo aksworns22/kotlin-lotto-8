@@ -1,6 +1,8 @@
 package lotto
 
 data class LottoPurchaseUnit(val count: Int) {
+    val totalMoney = count * VALID_MONEY_UNIT
+
     init {
         require(count >= 0) { INVALID_UNIT_ERROR }
     }
