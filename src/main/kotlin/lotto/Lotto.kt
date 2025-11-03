@@ -4,13 +4,6 @@ import lotto.component.LottoNumber
 import lotto.result.PurchaseResult
 import lotto.util.RandomGenerator
 
-fun List<Lotto>.print() {
-    this.forEach { lotto ->
-        println(lotto.toString())
-    }
-    println()
-}
-
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == SIZE) { SIZE_ERROR }

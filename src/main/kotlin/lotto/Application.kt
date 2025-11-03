@@ -7,6 +7,13 @@ import lotto.result.RankResult
 import lotto.util.ConsoleUserInput
 import lotto.util.UniqueRandomGenerator
 
+fun List<Lotto>.print() {
+    this.forEach { lotto ->
+        println(lotto.toString())
+    }
+    println()
+}
+
 fun main() {
     val lottoPurchaseUnit = PurchaseRequest.from(ConsoleUserInput)
     val boughtLotto = Lotto.from(UniqueRandomGenerator, lottoPurchaseUnit)
