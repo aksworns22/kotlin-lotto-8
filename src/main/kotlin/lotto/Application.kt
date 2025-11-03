@@ -10,4 +10,9 @@ fun main() {
     val boughtLotto = Lotto.from(UniqueRandomGenerator, lottoPurchaseUnit)
     boughtLotto.print()
     val winningNumbers = WinningNumbersRequest.from(ConsoleUserInput)
+    val lottoResults = boughtLotto.map { lotto -> LottoResult.of(lotto, winningNumbers) }
+    val rankResult = RankResult.of(lottoResults.map { lottoResult -> Rank.from(lottoResult) })
+    rankResult.print()
+    val profit = Profit(rankResult, lottoPurchaseUnit)
+    profit.printRate()
 }
