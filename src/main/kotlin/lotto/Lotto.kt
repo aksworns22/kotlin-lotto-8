@@ -1,7 +1,7 @@
 package lotto
 
 import lotto.component.LottoNumber
-import lotto.result.LottoPurchaseUnit
+import lotto.result.PurchaseResult
 import lotto.util.RandomGenerator
 
 fun List<Lotto>.print() {
@@ -57,7 +57,7 @@ class Lotto(private val numbers: List<Int>) {
             return Lotto(randomNumbers)
         }
 
-        fun from(randomGenerator: RandomGenerator, numberOfLotto: LottoPurchaseUnit): List<Lotto> {
+        fun from(randomGenerator: RandomGenerator, numberOfLotto: PurchaseResult): List<Lotto> {
             return (0..<numberOfLotto.count).map { from(randomGenerator) }
         }
     }

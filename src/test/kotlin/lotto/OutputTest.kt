@@ -5,7 +5,7 @@ import lotto.component.RegularNumbers
 import lotto.request.BonusNumberRequest
 import lotto.request.PurchaseRequest
 import lotto.request.RegularNumbersRequest
-import lotto.result.LottoPurchaseUnit
+import lotto.result.PurchaseResult
 import lotto.result.RankResult
 import lotto.util.FakeRandomGenerator
 import lotto.util.FakeUserInput
@@ -41,7 +41,7 @@ class OutputTest {
         PurchaseRequest.from(FakeUserInput(listOf("a", "1000")))
         assertThat(output()).contains(
             "구입금액을 입력해 주세요.",
-            LottoPurchaseUnit.INVALID_MONEY_ERROR,
+            PurchaseResult.INVALID_MONEY_ERROR,
             "1개를 구매했습니다."
         )
     }
@@ -53,7 +53,7 @@ class OutputTest {
             listOf(45, 1, 2, 4, 3, 44)
         )
         val fakeRandomGenerator = FakeRandomGenerator(randomNumbers)
-        val boughtLotto = Lotto.from(fakeRandomGenerator, LottoPurchaseUnit(2))
+        val boughtLotto = Lotto.from(fakeRandomGenerator, PurchaseResult(2))
         boughtLotto.print()
         assertThat(output()).contains(
             "[1, 2, 3, 4, 5, 6]",
@@ -111,8 +111,8 @@ class OutputTest {
     @Test
     fun `계산한 수익률을 출력한다`() {
         val rankResult = RankResult.of(listOf(Rank.FIFTH))
-        val lottoPurchaseUnit = LottoPurchaseUnit(8)
-        Profit(rankResult, lottoPurchaseUnit).printRate()
+        val purchaseResult = PurchaseResult(8)
+        Profit(rankResult, purchaseResult).printRate()
         assertThat(output()).contains("총 수익률은 62.5%입니다.")
     }
 }

@@ -1,7 +1,7 @@
 package lotto
 
 import lotto.component.LottoNumber
-import lotto.result.LottoPurchaseUnit
+import lotto.result.PurchaseResult
 import lotto.util.UniqueRandomGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
@@ -56,7 +56,7 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 2])
     fun `구매한 개수만큼 랜덤한 숫자로 구성된 로또를 발행한다`(count: Int) {
-        val numberOfLotto = LottoPurchaseUnit(count)
+        val numberOfLotto = PurchaseResult(count)
         assertThat(Lotto.from(UniqueRandomGenerator, numberOfLotto))
             .hasSize(count)
     }

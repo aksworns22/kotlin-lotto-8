@@ -1,6 +1,6 @@
 package lotto.result
 
-data class LottoPurchaseUnit(val count: Int) {
+data class PurchaseResult(val count: Int) {
     val totalMoney = count * VALID_MONEY_UNIT
 
     init {
@@ -11,10 +11,10 @@ data class LottoPurchaseUnit(val count: Int) {
         const val VALID_MONEY_UNIT = 1000
         const val INVALID_MONEY_ERROR = "[ERROR] 유효하지 않은 구입 금액입니다."
         const val INVALID_UNIT_ERROR = "[ERROR] 유효하지 않은 단위입니다."
-        fun from(input: String): LottoPurchaseUnit {
+        fun from(input: String): PurchaseResult {
             val money = input.toDoubleOrNull() ?: throw IllegalArgumentException(INVALID_MONEY_ERROR)
             validateMoney(money)
-            return LottoPurchaseUnit(money.toInt() / VALID_MONEY_UNIT)
+            return PurchaseResult(money.toInt() / VALID_MONEY_UNIT)
         }
 
         private fun validateMoney(money: Double) {
